@@ -4,6 +4,8 @@
         "tslint:recommended"
     ],
     "jsRules": {},
-    "rules": {},
-    "rulesDirectory": []
+    "rules": {
+        "max-line-length": [true, 120]
+      }  
+    
 }
