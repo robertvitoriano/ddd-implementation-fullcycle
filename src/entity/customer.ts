@@ -1,4 +1,6 @@
-class Customer {
+import { Address } from "./address";
+
+export class Customer {
   _id: string = "";
   _name: string = "";
   _address!: Address;
@@ -26,6 +28,9 @@ class Customer {
   }
   get address(): Address {
     return this._address;
+  }
+  isActive(): boolean {
+    return this._active;
   }
   changeName(name: string) {
     this._name = name;
