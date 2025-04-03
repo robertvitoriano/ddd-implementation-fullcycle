@@ -1,51 +1,59 @@
-import { Address } from "./address";
+import { Address } from "./address"
 
 export class Customer {
-  _id: string = "";
-  _name: string = "";
-  _address!: Address;
-  _active: boolean = false;
+  _id: string = ""
+  _name: string = ""
+  _address!: Address
+  _active: boolean = false
+  _rewardPoints: number = 0
 
   constructor(id: string, name: string) {
-    this._id = id;
-    this._name = name;
-    this.validate();
+    this._id = id
+    this._name = name
+    this.validate()
   }
 
   get id(): string {
-    return this._id;
+    return this._id
   }
   validate() {
     if (this.name.length === 0) {
-      throw new Error("Name is required");
+      throw new Error("Name is required")
     }
     if (this._id.length === 0) {
-      throw new Error("id is required");
+      throw new Error("id is required")
     }
   }
   get name(): string {
-    return this._name;
+    return this._name
+  }
+
+  get rewardPoints(): number {
+    return this._rewardPoints
   }
   get address(): Address {
-    return this._address;
+    return this._address
   }
   isActive(): boolean {
-    return this._active;
+    return this._active
   }
   changeName(name: string) {
-    this._name = name;
-    this.validate();
+    this._name = name
+    this.validate()
   }
   activate() {
     if (!this._address) {
-      throw new Error("Addres is mandatory to activate a customer");
+      throw new Error("Addres is mandatory to activate a customer")
     }
-    this._active = true;
+    this._active = true
+  }
+  addRewardPoints(amountToAdd: number) {
+    this._rewardPoints += amountToAdd
   }
   deactivate() {
-    this._active = false;
+    this._active = false
   }
   set address(address: Address) {
-    this._address = address;
+    this._address = address
   }
 }
