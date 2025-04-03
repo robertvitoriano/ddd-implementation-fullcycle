@@ -10,10 +10,8 @@ export class OrderService {
   }
 
   static placeOrder(customer: Customer, items: OrderItem[]): Order {
-    const amountOfRewardPointsToAdd =
-      items.reduce((acc, currentValue) => acc + currentValue.price, 0) / 2
-
-    customer.addRewardPoints(amountOfRewardPointsToAdd)
-    return new Order("o1", customer.id, items)
+    const newOrder = new Order(String(Math.random() * 100), customer.id, items)
+    customer.addRewardPoints(newOrder.total() / 2)
+    return newOrder
   }
 }
