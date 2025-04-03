@@ -25,4 +25,13 @@ describe("Order service unit test", () => {
     expect(order.total()).toBe(10)
     expect(customer.rewardPoints).toBe(5)
   })
+
+  it("Should add reward ppoints ", () => {
+    const customer = new Customer("1", "Customer 1")
+    expect(customer.rewardPoints).toBe(0)
+    customer.addRewardPoints(10)
+    expect(customer.rewardPoints).toBe(10)
+    customer.addRewardPoints(20)
+    expect(customer.rewardPoints).toBe(30)
+  })
 })
