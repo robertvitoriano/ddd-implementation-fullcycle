@@ -1,16 +1,17 @@
-import { Product } from "../entity/product"
-import { ProductsService } from "./product.service"
+import { Order } from "../entity/order"
+import { OrderItem } from "../entity/order_item"
+import { OrderService } from "./order.service"
 
-describe("Product service unit tests", () => {
-  it("Should change the price of all products", () => {
-    const product1 = new Product("product1", "Product 1", 10)
-    const product2 = new Product("product2", "Product 2", 20)
+describe("Order service unit test", () => {
+  it("Should get the total of all orders ", () => {
+    const item1 = new OrderItem("i1", "Item 1", 100, "p1", 1)
+    const item2 = new OrderItem("i2", "Item2", 200, "p2", 2)
 
-    const products = [product1, product2]
+    const order = new Order("01", "c1", [item1])
+    const order2 = new Order("02", "c2", [item2])
 
-    ProductsService.increasePrice(products, 100)
+    const total = OrderService.total([order, order2])
 
-    expect(product1.price).toBe(20)
-    expect(product2.price).toBe(40)
+    expect(total).toBe(500)
   })
 })
