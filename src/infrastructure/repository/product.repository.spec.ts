@@ -1,0 +1,18 @@
+import { Sequelize } from "sequelize-typescript"
+
+describe("Product repository teste", () => {
+  let connection: Sequelize
+
+  beforeEach(async () => {
+    connection = new Sequelize({
+      dialect: "sqlite",
+      storage: ":memory",
+      logging: false,
+      sync: { force: true },
+    })
+  })
+
+  afterEach(async () => {
+    await connection.close()
+  })
+})
