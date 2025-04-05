@@ -16,6 +16,9 @@ export class OrderItem {
   get price(): number {
     return this._price * this._quantity
   }
+  get quantity(): number {
+    return this._quantity
+  }
   get id(): string {
     return this._id
   }

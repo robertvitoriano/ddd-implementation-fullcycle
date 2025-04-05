@@ -23,7 +23,7 @@ describe("Order repository test", () => {
       sync: { force: true },
     })
 
-    await sequelize.addModels([OrderModel, CustomerModel, OrderItemModel, ProductModel])
+    await sequelize.addModels([ProductModel, OrderModel, CustomerModel, OrderItemModel])
     await sequelize.sync()
   })
 
