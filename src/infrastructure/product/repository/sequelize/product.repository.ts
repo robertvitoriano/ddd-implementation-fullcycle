@@ -1,7 +1,6 @@
-import { where } from "sequelize"
-import { Product } from "../../domain/entity/product"
-import { ProductRepositoryInterface } from "../../domain/repository/product-repository.interface"
-import { ProductModel } from "../database/sequelize/model/product.model"
+import { Product } from "../../../../domain/entity/product"
+import { ProductRepositoryInterface } from "../../../../domain/repository/product-repository.interface"
+import { ProductModel } from "./product.model"
 
 export class ProductRepository implements ProductRepositoryInterface {
   async findByName(name: string): Promise<Product> {
@@ -33,7 +32,7 @@ export class ProductRepository implements ProductRepositoryInterface {
       }
     )
   }
-  find(id: string): Promise<void> {
+  find(id: string): Promise<Product> {
     throw new Error("Method not implemented.")
   }
   async findAll(): Promise<Product[]> {
