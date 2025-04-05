@@ -3,7 +3,7 @@ import { OrderItem } from "./order_item"
 export class Order {
   private _id: string
   private _customerId: string
-  private _items: OrderItem[]
+  public _items: OrderItem[]
   private _total: number
 
   constructor(id: string, customerId: string, items: OrderItem[]) {
@@ -25,7 +25,7 @@ export class Order {
     return this._items
   }
   total(): number {
-    return this._items.reduce((acc, item) => acc + item.price, 0)
+    return this._items.reduce((acc, item) => acc + item.price * item.quantity, 0)
   }
 
   validate() {

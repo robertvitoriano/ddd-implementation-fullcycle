@@ -7,14 +7,14 @@ export class OrderItem {
   constructor(id: string, name: string, price: number, productId: string, quantity: number) {
     this._id = id
     this._name = name
-    this._price = price
     this._productId = productId
     this._quantity = quantity
+    this._price = price
     this.validate()
   }
 
   get price(): number {
-    return this._price * this._quantity
+    return this._price
   }
   get quantity(): number {
     return this._quantity
