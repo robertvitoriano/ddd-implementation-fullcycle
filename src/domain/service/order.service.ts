@@ -14,8 +14,8 @@ export class OrderService {
   static placeOrder(customer: Customer, items: OrderItem[]): Order {
     const newOrder = new Order(uuid(), customer.id, items)
     customer.addRewardPoints(newOrder.total() / 2)
-    const customerRepository = new CustomerRepository()
-    customerRepository.update(customer)
+    // const customerRepository = new CustomerRepository()
+    // customerRepository.update(customer)
 
     return newOrder
   }
