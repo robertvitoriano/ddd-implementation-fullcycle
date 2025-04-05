@@ -19,7 +19,7 @@ export class OrderItemModel extends Model {
   declare product: ProductModel
 
   @ForeignKey(() => OrderModel)
-  @Column({ allowNull: false })
+  @Column({ allowNull: false, onDelete: "CASCADE" })
   declare order_id: string
 
   @BelongsTo(() => OrderModel)

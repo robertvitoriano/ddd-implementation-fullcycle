@@ -4,8 +4,13 @@ import { OrderRepositoryInterface } from "../../../../domain/repository/order-re
 import { OrderItemModel } from "./order-item.model"
 import { OrderModel } from "./order.model"
 export default class OrderRepository implements OrderRepositoryInterface {
-  delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.")
+  async delete(id: string): Promise<void> {
+    await OrderModel.destroy({
+      where: {
+        id,
+      },
+      cascade: true,
+    })
   }
   async update(entity: Order): Promise<void> {
     // First update the order itself
@@ -65,14 +70,14 @@ export default class OrderRepository implements OrderRepositoryInterface {
       }
     }
   }
-  async find(id: string): Promise<Order> {
+  async find(id: string): Promise<Order | null> {
     const order = await OrderModel.findOne({
       where: {
         id,
       },
       include: ["items"],
     })
-
+    if (!order) return null
     return new Order(
       order.id,
       order.customer_id,
