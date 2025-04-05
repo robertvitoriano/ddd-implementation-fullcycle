@@ -9,8 +9,8 @@ import { Address } from "../../../../domain/entity/address"
 import { ProductRepository } from "../../../product/repository/sequelize/product.repository"
 import { Order } from "../../../../domain/entity/order"
 import { OrderItem } from "../../../../domain/entity/order_item"
-import { OrderRepository } from "./order.repository"
 import { OrderModel } from "./order.model"
+import OrderRepository from "./order.repository"
 
 describe("Order repository test", () => {
   let sequelize: Sequelize
@@ -31,53 +31,41 @@ describe("Order repository test", () => {
     await sequelize.close()
   })
 
-  it("Should create a new order", async () => {
+  it("should create a new order", async () => {
     const customerRepository = new CustomerRepository()
-    const productRepository = new ProductRepository()
-    const orderRepository = new OrderRepository()
-
-    const customer = new Customer("asdsad", "Robert Vitoriano")
-    const address = new Address("Rua dos bovos", 1, "181200", "Mairinque")
+    const customer = new Customer("123", "Customer 1")
+    const address = new Address("Street 1", 1, "Zipcode 1", "City 1")
     customer.changeAddress(address)
     await customerRepository.create(customer)
 
-    const product = new Product("123", "My first product", 200)
+    const productRepository = new ProductRepository()
+    const product = new Product("123", "Product 1", 10)
     await productRepository.create(product)
 
-    const orderItem1 = new OrderItem("asdasdasd", "order item 1", product.price, product.id, 2)
-    const orderItem2 = new OrderItem("asdasdasd", "order item 2", product.price, product.id, 5)
+    const orderItem = new OrderItem("1", product.name, product.price, product.id, 2)
 
-    const order = new Order("12323", customer.id, [orderItem1, orderItem2])
+    const order = new Order("123", "123", [orderItem])
 
+    const orderRepository = new OrderRepository()
     await orderRepository.create(order)
 
     const orderModel = await OrderModel.findOne({
-      where: {
-        id: order.id,
-      },
+      where: { id: order.id },
       include: ["items"],
     })
 
-    console.log({ orderModel: orderModel.toJSON() })
-
     expect(orderModel.toJSON()).toStrictEqual({
-      id: "12323",
-      customer_id: "asdsad",
+      id: "123",
+      customer_id: "123",
       total: order.total(),
       items: [
         {
-          id: orderItem1.id,
-          product_id: orderItem1.productId,
-          name: orderItem1.name,
-          price: orderItem1.price,
-          order_id: "12323",
-        },
-        {
-          id: orderItem2.id,
-          product_id: orderItem2.productId,
-          name: orderItem2.name,
-          price: orderItem2.price,
-          order_id: "12323",
+          id: orderItem.id,
+          name: orderItem.name,
+          price: orderItem.price,
+          quantity: orderItem.quantity,
+          order_id: "123",
+          product_id: "123",
         },
       ],
     })
