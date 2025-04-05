@@ -1,5 +1,4 @@
 import { Sequelize } from "sequelize-typescript"
-import { OrderModel } from "./order.model"
 import { CustomerModel } from "../../../customer/repository/sequelize/customer.model"
 import { OrderItemModel } from "./order-item.model"
 import { ProductModel } from "../../../product/repository/sequelize/product.model"
@@ -11,6 +10,7 @@ import { ProductRepository } from "../../../product/repository/sequelize/product
 import { Order } from "../../../../domain/entity/order"
 import { OrderItem } from "../../../../domain/entity/order_item"
 import { OrderRepository } from "./order.repository"
+import { OrderModel } from "./order.model"
 
 describe("Order repository test", () => {
   let sequelize: Sequelize
@@ -57,6 +57,8 @@ describe("Order repository test", () => {
       },
       include: ["items"],
     })
+
+    console.log({ orderModel: orderModel.toJSON() })
 
     expect(orderModel.toJSON()).toStrictEqual({
       id: "12323",
