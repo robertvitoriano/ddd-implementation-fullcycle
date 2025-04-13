@@ -143,8 +143,7 @@ describe("Order repository test", () => {
     const orderRepository = new OrderRepository()
     await orderRepository.create(order)
     const orderFound = await orderRepository.find(order.id)
-    console.log({ orderFound: orderFound._items })
-    console.log({ currentOrder: order._items })
+
     expect(orderFound).toEqual(order)
   })
 
