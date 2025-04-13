@@ -1,4 +1,6 @@
+import { CustomerAddressChangedEvent } from "../customer/address-changed-event"
 import { CustomerCreatedEvent } from "../customer/customer-created-event"
+import { EnviaConsoleLogHandler } from "../customer/handler/envia-consolelog.handler"
 import { EnviaConsoleLog1Handler } from "../customer/handler/envia-consolelog1.handler"
 import { EnviaConsoleLog2Handler } from "../customer/handler/envia-consolelog2.handler"
 import { SendEmailWhenProductIsCreatedHandler } from "../product/handler/send-email-when-product-is-created.handler"
@@ -99,6 +101,35 @@ describe("Domain events tests", () => {
 
     expect(consoleLogSpy).toHaveBeenCalledWith(
       "Esse é o segundo console.log do evento: CustomerCreated"
+    )
+  })
+  it("Should notify event handlers when address is changed", async () => {
+    const eventDispatcher = new EventDispatcher()
+
+    const eventHandler = new EnviaConsoleLogHandler()
+
+    const spyEventHandler = jest.spyOn(eventHandler, "handle")
+
+    const consoleLogSpy = jest.spyOn(console, "log")
+
+    eventDispatcher.register("CustomerAddressChangedEvent", eventHandler)
+
+    expect(eventDispatcher.getEventHandlers["CustomerAddressChangedEvent"].length).toBe(1)
+    expect(eventDispatcher.getEventHandlers["CustomerAddressChangedEvent"][0]).toMatchObject(
+      eventHandler
+    )
+    const eventData = {
+      customerId: 1,
+      customerName: "Robert",
+      newAddress: "new street",
+    }
+    const customerAddressChangedEvent = new CustomerAddressChangedEvent(eventData)
+    eventDispatcher.notify(customerAddressChangedEvent)
+
+    expect(spyEventHandler).toHaveBeenCalledTimes(1)
+
+    expect(consoleLogSpy).toHaveBeenCalledWith(
+      `Endereço do cliente: ${eventData.customerId}, ${eventData.customerName} alterado para: ${eventData.newAddress}`
     )
   })
 })
