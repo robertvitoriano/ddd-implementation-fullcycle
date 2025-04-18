@@ -1,4 +1,4 @@
-import { Product } from "../entity/product"
+import { Product } from "../entity/product-a"
 import { RepositoryInterface } from "../../@shared/repository/repository-interface"
 
 export interface ProductRepositoryInterface extends RepositoryInterface<Product> {

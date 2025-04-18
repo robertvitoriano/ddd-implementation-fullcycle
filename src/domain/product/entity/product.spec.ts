@@ -1,4 +1,4 @@
-import { Product } from "./product"
+import { Product } from "./product-a"
 describe("order unit test", () => {
   it("throws an error when id is empty", () => {
     expect(() => {

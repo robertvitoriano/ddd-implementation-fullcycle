@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize-typescript"
 import { CustomerModel } from "../../../infrastructure/customer/repository/sequelize/customer.model"
 import { OrderItemModel } from "../../../infrastructure/order/repository/sequelize/order-item.model"
 import { ProductModel } from "../../../infrastructure/product/repository/sequelize/product.model"
-import { Product } from "../entity/product"
+import { Product } from "../entity/product-a"
 import { OrderModel } from "../../../infrastructure/order/repository/sequelize/order.model"
 import { ProductsService } from "./product.service"
 
