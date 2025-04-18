@@ -1,7 +1,7 @@
-import { CustomerRepository } from "../../infrastructure/customer/repository/sequelize/customer.repository"
-import Customer from "../entity/customer"
 import { Order } from "../entity/order"
 import { OrderItem } from "../entity/order_item"
+import Customer from "../../entity/customer"
+
 import { v4 as uuid } from "uuid"
 export class OrderService {
   constructor() {}

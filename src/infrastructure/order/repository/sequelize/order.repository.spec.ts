@@ -7,10 +7,10 @@ import Customer from "../../../../domain/entity/customer"
 import { Product } from "../../../../domain/entity/product"
 import { Address } from "../../../../domain/entity/address"
 import { ProductRepository } from "../../../product/repository/sequelize/product.repository"
-import { Order } from "../../../../domain/entity/order"
-import { OrderItem } from "../../../../domain/entity/order_item"
 import { OrderModel } from "./order.model"
 import OrderRepository from "./order.repository"
+import { OrderItem } from "../../../../domain/checkout/entity/order_item"
+import { Order } from "../../../../domain/checkout/entity/order"
 
 describe("Order repository test", () => {
   let sequelize: Sequelize

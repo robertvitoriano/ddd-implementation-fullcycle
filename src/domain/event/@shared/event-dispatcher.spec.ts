@@ -3,9 +3,9 @@ import { CustomerCreatedEvent } from "../customer/customer-created-event"
 import { EnviaConsoleLogHandler } from "../customer/handler/envia-consolelog.handler"
 import { EnviaConsoleLog1Handler } from "../customer/handler/envia-consolelog1.handler"
 import { EnviaConsoleLog2Handler } from "../customer/handler/envia-consolelog2.handler"
-import { SendEmailWhenProductIsCreatedHandler } from "../product/handler/send-email-when-product-is-created.handler"
-import { ProductCreatedEvent } from "../product/product-created.event"
+import { SendEmailWhenProductIsCreatedHandler } from "../../product/event/handler/send-email-when-product-is-created.handler"
 import { EventDispatcher } from "./event-dispatcher"
+import { ProductCreatedEvent } from "../../product/event/product-created.event"
 
 describe("Domain events tests", () => {
   it("Should be able to register a new event handler", () => {

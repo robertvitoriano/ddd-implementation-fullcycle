@@ -1,5 +1,5 @@
-import { ProductRepository } from "../../infrastructure/product/repository/sequelize/product.repository"
-import { Product } from "../entity/product"
+import { ProductRepository } from "../../../infrastructure/product/repository/sequelize/product.repository"
+import { Product } from "../../entity/product"
 
 export class ProductsService {
   static async increasePrice(products: Product[], percentage: number): Promise<void> {
