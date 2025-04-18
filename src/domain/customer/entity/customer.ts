@@ -20,7 +20,9 @@ export default class Customer {
   get name(): string {
     return this._name
   }
-
+  get address(): Address {
+    return this._address
+  }
   get rewardPoints(): number {
     return this._rewardPoints
   }
